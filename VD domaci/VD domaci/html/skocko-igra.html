@@ -8,11 +8,262 @@
     <link rel="stylesheet" type="text/css" href="../css/background.css" /> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #6F95DB;">
 
-    <article style="background-color: blue;">
-asdfasf
-    </article>
+    <audio id="Skoocko" src="../audio/Skocko.mp3" preload="auto"></audio>
+    <audio id="Banija" src="../audio/Banija.mp3" preload="auto"></audio>
+    <audio id="Kordun" src="../audio/Kordun.mp3" preload="auto"></audio>
+    <audio id="Lika" src="../audio/Lika.mp3" preload="auto"></audio>
+    <audio id="Bosanka" src="../audio/Bosanka1.mp3" preload="auto"></audio>
+    <audio id="Voditeljka" src="../audio/Pesma-Igra.mp3" preload="auto"></audio>
+
+    <!--  
+    <script type="text/javascript">
+        alert("Hello world");
+        
+        document.getElementById('Voditeljka').play();
+    </script>
+    -->
+
+    <div class="container global">
+
+        <div class="row playground border-primary" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%) contrast(40%) drop-shadow(4px 4px 10px gray);">
+            
+            <div class="col offset-1"></div>
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-4">
+
+                        <table class="player1 tabela" id="board player1">
+                            
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+                            
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="board player1" id="00">&nbsp; </td>
+                            <td class="board player1" id="01">&nbsp; </td>
+                            <td class="board player1" id="02">&nbsp; </td>
+                            <td class="board player1" id="03">&nbsp; </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+
+                    <div class="col-1">
+
+                        <table class="player1 tabela dugmad" id="board player1">
+                            
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+                            
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+
+                            <tr>
+                            <td id="00"><button type="submit"> >> </button></td>
+                            </tr>
+                            
+                        </table>
+
+                    </div> 
+
+                    <div class="col-4">
+
+                        <table class="player1 tabela pogodak" id="board player1" style="margin-left: 50px;">
+                            
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+                            
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+
+                            <tr>
+                            <td class="guess player1" id="00">&nbsp; </td>
+                            <td class="guess player1" id="01">&nbsp; </td>
+                            <td class="guess player1" id="02">&nbsp; </td>
+                            <td class="guess player1" id="03">&nbsp; </td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+
+                    <div class="col-2">
+                        <div class="container" style="margin-top: 30px;">
+
+                            <div class="row" style="margin: 10px;">
+
+                                <div class="col-12"><button type="button" class="btn btn-primary" style=" width: 100px; border: black; border: 2px solid black;">Nova Igra</button></div>
+
+                            </div>
+
+                            <div class="row" style="margin: 10px;">
+
+                                <div class="col-12"><button type="button"  id="Start" class="btn btn-primary" style=" width: 100px; border: 2px solid black;" onclick="document.getElementById('Voditeljka').play(); document.getElementById('Start').disabled = true;">Start</button></div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <canvas>123</canvas>
+
+                            </div>
+
+                        </div>
+
+                        <button>Nova Igra</button>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row correct">
+
+                    <div class="col-4">
+
+                        <table class="tabela">
+
+                            <tr>
+
+                                <td class="board player1" id="n1">&nbsp; </td>
+                                <td class="board player1" id="n2">&nbsp; </td>
+                                <td class="board player1" id="n3">&nbsp; </td>
+                                <td class="board player1" id="n4">&nbsp; </td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+                    <div class="col-1">&nbsp; </div>
+                    <div class="col-4">
+
+                        <table class="tabela icons">
+
+                            <tr>
+
+                                <td class="board player1" id="m1"><img class="icons" onclick="document.getElementById('Skoocko').play();" src="../Images/Skoocko.png" alt=""> </td>
+                                <td class="board player1" id="m2"><img class="icons" onclick="document.getElementById('Kordun').play();" src="../Images/Kordun.png" alt=""> </td>
+                                <td class="board player1" id="m3"><img class="icons" onclick="document.getElementById('Lika').play();" src="../Images/Lika.png" alt=""> </td>
+                                <td class="board player1" id="m4"><img class="icons" onclick="document.getElementById('Banija').play();" src="../Images/Banija.png" alt=""> </td>
+                                <td class="board player1" id="m5"><img class="icons" src="../Images/Slavonia.png" alt=""> </td>
+                                <td class="board player1" id="m6"><img class="icons" onclick="document.getElementById('Bosanka').play();" src="../Images/RepublikaRrspka.png" alt=""> </td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+                    <div class="col offset-3"></div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="col offset-1"></div>
+        
+        </div>
+
+    </div>
     
 </body>
 </html>

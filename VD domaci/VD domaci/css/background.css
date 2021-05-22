@@ -1,8 +1,83 @@
 body {
+    background-color: #6F95DB;
     background-image: url("../Images/slagalica.jpg");
     background-repeat:no-repeat;
     background-size:cover;
 }
+
+table{
+    border-spacing: 15px 5px;
+}
+
+table.icons{
+    border-spacing: 5px;
+}
+
+table.dugmad{
+
+border-spacing: 15px 39px;
+margin-left: 35px;
+
+}
+
+table.tabela {
+    border-collapse:separate;
+  }
+
+.container{
+    margin-top: 10px;
+}
+
+table.pogodak{
+    border-spacing: 15px 22px ;
+}
+
+.container.global{
+    margin-top: 50px;
+}
+
+td.guess{
+    border-radius: 2px;
+    background-color:rgb(139, 136, 136);
+	width:50px;
+	height:50px;
+	border:2px solid;
+    margin: auto;
+}
+
 .uvodna{
     background-image: url("../Images/slagalica-uvod.jpg");
+}
+
+table#board{
+    background-color: #6F95DB;
+    border-collapse: separate;
+}
+td.board{
+    border-radius: 10px;
+    background-color: #6F95DB;
+	width:70px;
+	height:70px;
+	border:2px solid;
+    margin: auto;
+}
+
+div.row.playground{
+
+    border: solid;
+
+}
+
+div.row.correct{
+    padding: 10px;
+    padding-left: 0px;
+}
+
+.icons{
+width: 60px;
+height: 60px;
+}
+
+.border-primary{
+    border-width: 25px;
 }
