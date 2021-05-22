@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Potapanje Brodova</title>
+<link rel="stylesheet" href="battleship-style.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row">
+    
+    <div class="coll-12">
+    <form id="input">
+    	<input type = "text" id = "guessInput" placeholder = "A0" />
+        <input type = "button" id = "fireButton" value="Fire!" />
+    </form>
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="coll-12">
+        <div id="messageArea">HIT MESSAGE</div>
+    </div>
+    </div>
+    <div class="row justify-content-md-center">
+    
+   <div class="col-6">
+   &nbsp; 
+    	<table class="player1" id="board player1">
+  <tr>
+  	<th scope="col">&nbsp;</th>
+    <th scope="col">A</th>
+    <th scope="col">B</th>
+    <th scope="col">C</th>
+    <th scope="col">D</th>
+    <th scope="col">E</th>
+    <th scope="col">F</th>
+    <th scope="col">G</th>
+    <th scope="col">H</th>
+    <th scope="col">I</th>
+    <th scope="col">J</th>
+  </tr>
+  
+  <tr>
+  	<th scope="col">1</th>
+    <td class="board player1" id="00">&nbsp; </td>
+    <td class="board player1" id="01">&nbsp; </td>
+    <td class="board player1" id="02">&nbsp; </td>
+    <td class="board player1" id="03">&nbsp; </td>
+    <td class="board player1" id="04">&nbsp; </td>
+    <td class="board player1" id="05">&nbsp; </td>
+    <td class="board player1" id="06">&nbsp; </td>
+    <td class="board player1" id="07">&nbsp; </td>
+    <td class="board player1" id="08">&nbsp; </td>
+    <td class="board player1" id="09">&nbsp; </td>
+  </tr>
+  
+  <tr>
+  	<th scope="col">2</th>
+    <td class="board player1" id="10">&nbsp; </td>
+    <td class="board player1" id="11">&nbsp; </td>
+    <td class="board player1" id="12">&nbsp; </td>
+    <td class="board player1" id="13">&nbsp; </td>
+    <td class="board player1" id="14">&nbsp; </td>
+    <td class="board player1" id="15">&nbsp; </td>
+    <td class="board player1" id="16">&nbsp; </td>
+    <td class="board player1" id="17">&nbsp; </td>
+    <td class="board player1" id="18">&nbsp; </td>
+    <td class="board player1" id="19">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">3</th>
+    <td class="board player1" id="20">&nbsp; </td>
+    <td class="board player1" id="21">&nbsp; </td>
+    <td class="board player1" id="22">&nbsp; </td>
+    <td class="board player1" id="23">&nbsp; </td>
+    <td class="board player1" id="24">&nbsp; </td>
+    <td class="board player1" id="25">&nbsp; </td>
+    <td class="board player1" id="26">&nbsp; </td>
+    <td class="board player1" id="27">&nbsp; </td>
+    <td class="board player1" id="28">&nbsp; </td>
+    <td class="board player1" id="29">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">4</th>
+    <td class="board player1" id="30">&nbsp; </td>
+    <td class="board player1" id="31">&nbsp; </td>
+    <td class="board player1" id="32">&nbsp; </td>
+    <td class="board player1" id="33">&nbsp; </td>
+    <td class="board player1" id="34">&nbsp; </td>
+    <td class="board player1" id="35">&nbsp; </td>
+    <td class="board player1" id="36">&nbsp; </td>
+    <td class="board player1" id="37">&nbsp; </td>
+    <td class="board player1" id="38">&nbsp; </td>
+    <td class="board player1" id="39">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">5</th>
+    <td class="board player1" id="40">&nbsp; </td>
+    <td class="board player1" id="41">&nbsp; </td>
+    <td class="board player1" id="42">&nbsp; </td>
+    <td class="board player1" id="43">&nbsp; </td>
+    <td class="board player1" id="44">&nbsp; </td>
+    <td class="board player1" id="45">&nbsp; </td>
+    <td class="board player1" id="46">&nbsp; </td>
+    <td class="board player1" id="47">&nbsp; </td>
+    <td class="board player1" id="48">&nbsp; </td>
+    <td class="board player1" id="49">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">6</th>
+    <td class="board player1" id="50">&nbsp; </td>
+    <td class="board player1" id="51">&nbsp; </td>
+    <td class="board player1" id="52">&nbsp; </td>
+    <td class="board player1" id="53">&nbsp; </td>
+    <td class="board player1" id="54">&nbsp; </td>
+    <td class="board player1" id="55">&nbsp; </td>
+    <td class="board player1" id="56">&nbsp; </td>
+    <td class="board player1" id="57">&nbsp; </td>
+    <td class="board player1" id="58">&nbsp; </td>
+    <td class="board player1" id="59">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">7</th>
+    <td class="board player1" id="60">&nbsp; </td>
+    <td class="board player1" id="61">&nbsp; </td>
+    <td class="board player1" id="62">&nbsp; </td>
+    <td class="board player1" id="63">&nbsp; </td>
+    <td class="board player1" id="64">&nbsp; </td>
+    <td class="board player1" id="65">&nbsp; </td>
+    <td class="board player1" id="66">&nbsp; </td>
+    <td class="board player1" id="67">&nbsp; </td>
+    <td class="board player1" id="68">&nbsp; </td>
+    <td class="board player1" id="69">&nbsp; </td>
+  </tr>
+  <tr>
+ 	 <th scope="col">8</th>
+    <td class="board player1" id="70">&nbsp; </td>
+    <td class="board player1" id="71">&nbsp; </td>
+    <td class="board player1" id="72">&nbsp; </td>
+    <td class="board player1" id="73">&nbsp; </td>
+    <td class="board player1" id="74">&nbsp; </td>
+    <td class="board player1" id="75">&nbsp; </td>
+    <td class="board player1" id="76">&nbsp; </td>
+    <td class="board player1" id="77">&nbsp; </td>
+    <td class="board player1" id="78">&nbsp; </td>
+    <td class="board player1" id="79">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">9</th>
+    <td class="board player1" id="80">&nbsp; </td>
+    <td class="board player1" id="81">&nbsp; </td>
+    <td class="board player1" id="82">&nbsp; </td>
+    <td class="board player1" id="83">&nbsp; </td>
+    <td class="board player1" id="84">&nbsp; </td>
+    <td class="board player1" id="85">&nbsp; </td>
+    <td class="board player1" id="86">&nbsp; </td>
+    <td class="board player1" id="87">&nbsp; </td>
+    <td class="board player1" id="88">&nbsp; </td>
+    <td class="board player1" id="89">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">10</th>
+    <td class="board player1" id="90">&nbsp; </td>
+    <td class="board player1" id="91">&nbsp; </td>
+    <td class="board player1" id="92">&nbsp; </td>
+    <td class="board player1" id="93">&nbsp; </td>
+    <td class="board player1" id="94">&nbsp; </td>
+    <td class="board player1" id="95">&nbsp; </td>
+    <td class="board player1" id="96">&nbsp; </td>
+    <td class="board player1" id="97">&nbsp; </td>
+    <td class="board player1" id="98">&nbsp; </td>
+    <td class="board player1" id="99">&nbsp; </td>
+  </tr>
+</table>
+</div>
+<div class="col-6">
+&nbsp;
+    	<table class="player2" id="board player1">
+  <tr>
+  	<th scope="col">&nbsp;</th>
+    <th scope="col">A</th>
+    <th scope="col">B</th>
+    <th scope="col">C</th>
+    <th scope="col">D</th>
+    <th scope="col">E</th>
+    <th scope="col">F</th>
+    <th scope="col">G</th>
+    <th scope="col">H</th>
+    <th scope="col">I</th>
+    <th scope="col">J</th>
+  </tr>
+  
+  <tr>
+  	<th scope="col">1</th>
+    <td class="board player2" id="00">&nbsp; </td>
+    <td class="board player2" id="01">&nbsp; </td>
+    <td class="board player2" id="02">&nbsp; </td>
+    <td class="board player2" id="03">&nbsp; </td>
+    <td class="board player2" id="04">&nbsp; </td>
+    <td class="board player2" id="05">&nbsp; </td>
+    <td class="board player2" id="06">&nbsp; </td>
+    <td class="board player2" id="07">&nbsp; </td>
+    <td class="board player2" id="08">&nbsp; </td>
+    <td class="board player2" id="09">&nbsp; </td>
+  </tr>
+  
+  <tr>
+  	<th scope="col">2</th>
+    <td class="board player2" id="10">&nbsp; </td>
+    <td class="board player2" id="11">&nbsp; </td>
+    <td class="board player2" id="12">&nbsp; </td>
+    <td class="board player2" id="13">&nbsp; </td>
+    <td class="board player2" id="14">&nbsp; </td>
+    <td class="board player2" id="15">&nbsp; </td>
+    <td class="board player2" id="16">&nbsp; </td>
+    <td class="board player2" id="17">&nbsp; </td>
+    <td class="board player2" id="18">&nbsp; </td>
+    <td class="board player2" id="19">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">3</th>
+    <td class="board player2" id="20">&nbsp; </td>
+    <td class="board player2" id="21">&nbsp; </td>
+    <td class="board player2" id="22">&nbsp; </td>
+    <td class="board player2" id="23">&nbsp; </td>
+    <td class="board player2" id="24">&nbsp; </td>
+    <td class="board player2" id="25">&nbsp; </td>
+    <td class="board player2" id="26">&nbsp; </td>
+    <td class="board player2" id="27">&nbsp; </td>
+    <td class="board player2" id="28">&nbsp; </td>
+    <td class="board player2" id="29">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">4</th>
+    <td class="board player2" id="30">&nbsp; </td>
+    <td class="board player2" id="31">&nbsp; </td>
+    <td class="board player2" id="32">&nbsp; </td>
+    <td class="board player2" id="33">&nbsp; </td>
+    <td class="board player2" id="34">&nbsp; </td>
+    <td class="board player2" id="35">&nbsp; </td>
+    <td class="board player2" id="36">&nbsp; </td>
+    <td class="board player2" id="37">&nbsp; </td>
+    <td class="board player2" id="38">&nbsp; </td>
+    <td class="board player2" id="39">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">5</th>
+    <td class="board player2" id="40">&nbsp; </td>
+    <td class="board player2" id="41">&nbsp; </td>
+    <td class="board player2" id="42">&nbsp; </td>
+    <td class="board player2" id="43">&nbsp; </td>
+    <td class="board player2" id="44">&nbsp; </td>
+    <td class="board player2" id="45">&nbsp; </td>
+    <td class="board player2" id="46">&nbsp; </td>
+    <td class="board player2" id="47">&nbsp; </td>
+    <td class="board player2" id="48">&nbsp; </td>
+    <td class="board player2" id="49">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">6</th>
+    <td class="board player2" id="50">&nbsp; </td>
+    <td class="board player2" id="51">&nbsp; </td>
+    <td class="board player2" id="52">&nbsp; </td>
+    <td class="board player2" id="53">&nbsp; </td>
+    <td class="board player2" id="54">&nbsp; </td>
+    <td class="board player2" id="55">&nbsp; </td>
+    <td class="board player2" id="56">&nbsp; </td>
+    <td class="board player2" id="57">&nbsp; </td>
+    <td class="board player2" id="58">&nbsp; </td>
+    <td class="board player2" id="59">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">7</th>
+    <td class="board player2" id="60">&nbsp; </td>
+    <td class="board player2" id="61">&nbsp; </td>
+    <td class="board player2" id="62">&nbsp; </td>
+    <td class="board player2" id="63">&nbsp; </td>
+    <td class="board player2" id="64">&nbsp; </td>
+    <td class="board player2" id="65">&nbsp; </td>
+    <td class="board player2" id="66">&nbsp; </td>
+    <td class="board player2" id="67">&nbsp; </td>
+    <td class="board player2" id="68">&nbsp; </td>
+    <td class="board player2" id="69">&nbsp; </td>
+  </tr>
+  <tr>
+ 	 <th scope="col">8</th>
+    <td class="board player2" id="70">&nbsp; </td>
+    <td class="board player2" id="71">&nbsp; </td>
+    <td class="board player2" id="72">&nbsp; </td>
+    <td class="board player2" id="73">&nbsp; </td>
+    <td class="board player2" id="74">&nbsp; </td>
+    <td class="board player2" id="75">&nbsp; </td>
+    <td class="board player2" id="76">&nbsp; </td>
+    <td class="board player2" id="77">&nbsp; </td>
+    <td class="board player2" id="78">&nbsp; </td>
+    <td class="board player2" id="79">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">9</th>
+    <td class="board player2" id="80">&nbsp; </td>
+    <td class="board player2" id="81">&nbsp; </td>
+    <td class="board player2" id="82">&nbsp; </td>
+    <td class="board player2" id="83">&nbsp; </td>
+    <td class="board player2" id="84">&nbsp; </td>
+    <td class="board player2" id="85">&nbsp; </td>
+    <td class="board player2" id="86">&nbsp; </td>
+    <td class="board player2" id="87">&nbsp; </td>
+    <td class="board player2" id="88">&nbsp; </td>
+    <td class="board player2" id="89">&nbsp; </td>
+  </tr>
+  <tr>
+  	<th scope="col">10</th>
+    <td class="board player2" id="90">&nbsp; </td>
+    <td class="board player2" id="91">&nbsp; </td>
+    <td class="board player2" id="92">&nbsp; </td>
+    <td class="board player2" id="93">&nbsp; </td>
+    <td class="board player2" id="94">&nbsp; </td>
+    <td class="board player2" id="95">&nbsp; </td>
+    <td class="board player2" id="96">&nbsp; </td>
+    <td class="board player2" id="97">&nbsp; </td>
+    <td class="board player2" id="98">&nbsp; </td>
+    <td class="board player2" id="99">&nbsp; </td>
+  </tr>
+</table>
+    </div>
+    </div>
+    
+    <form>
+    <input type="button" id="againButton" onclick="window.location.href='battleship-welcome.html'" value = "New game"/>
+    </form>
+	<script src="battleship-script.js"></script>
+</body>
+</html>

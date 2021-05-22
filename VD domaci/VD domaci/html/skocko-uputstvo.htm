@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slagalika</title>
+<link rel="stylesheet" type="text/css" href="../css/background.css" /> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="uvodna">
+    
+<audio id="sound1" src="../audio/uvodna.mp3" preload="auto"></audio>
+
+
+<div class="container-fluid">
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row"><div class="col-12">&nbsp;</div></div>
+    <div class="row">
+        <div class="col-4" style="text-align:center; padding-left: 5%; color: white;">
+            <p>
+                <h3>Чвараков:</h3>
+                <h4>Притискаш човечуљке, знакове неке, треба да погодиш комбинацију и...
+                    Ма шта да ти причам ти већ знаш правила, то је оно што је 
+                    Фраушиловичка волела да гледа док јој не дође Чика Жика, па онда после они... 
+                    Ма није ни битно, побеђујеш Бошкића свакако, ко изгуби има право да се љути, а ко победи, тај само срећу узима! 
+                    Реци Торбици да већ може да запише 101 напрема 0!</h4>
+            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="offset-5"></div>
+                    <div class="col-2">
+                        <button class="btn btn-primary" id="Cvarak" onclick="document.getElementById('sound1').play(); document.getElementById('Cvarak').disabled = true;">Јашта!</button>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="offset-4"></div>
+        <div class="col-4" style="text-align: center; padding-left: 3%; padding-right: 5%; color: white;">
+            <p>
+                <h3>Бошкић:</h3>
+                <h4>Играчи наизменично покушавају да погоде задату комбинацију бирајући 4 знака. Након покушаја, зауставља се време 
+                    играча, наставља се време противника и тада он игра свој потез. Играч који први погоди задату 
+                    комбинацију је победник. Уколико ниједан играч не погоди комбинацију након 
+                    свог седмог покушаја, исход игре је нерешен. Уколико једном од играча истекне време, тада се игра 
+                    завршава и победник је играч ком је преостало време.</h4>
+            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="offset-5"></div>
+                    <div class="col-2">
+                        <button class="btn btn-warning" id="Bosko" onclick="document.getElementById('sound1').play();  document.getElementById('Bosko').disabled = true;">Разумео!</button>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>Copyright</footer>
+
+</body>
+
+</html>
