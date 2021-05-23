@@ -1,26 +1,24 @@
-/*var counter = 60;
-var interval = setInterval(function() {
-    counter--;
-    // Display 'counter' wherever you want to display it.
-    if (counter <= 0) {
-     		clearInterval(interval);
-      	$('#timer').html("<h3>Count down complete</h3>");  
-        return;
-    }else{
-    	$('#time').text(counter);
-    }
-}, 1000);*/
-
-var znak = ["Skoocko", "Kordun", "Lika", "Banija", "Slavonija", "RS"];
-
-var model = {
-
-    combination1:[0,0,0,0],
-    combination2:[0,0,0,0]
-
-}
 ///////////////////////////////////////////////////////////
 
+pobeda = "Torbica"
+
+cvarci = 0;
+boskici = 0;
+
+var model = {
+    
+    matrix : [
+
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0], cnt : 0},
+
+]
+}
 
 ///////////////// START - INITIALIZATION //////////////////
 
@@ -48,12 +46,6 @@ function initUputstvo(){
     document.getElementById("Cvarak").addEventListener("click", setP1);
     document.getElementById("Bosko").addEventListener("click", setP2);
 
-	//var i1=localStorage.getItem("names1");
-	//var i2=localStorage.getItem("names2");
-	
-	//model.ships1 = JSON.parse(i1);
-	//model.ships2 = JSON.parse(i2);
-
 };
 
 ///////////////////////////////////////////////////////////
@@ -62,7 +54,7 @@ function setP1() {
     p2Flag = 1;
 
     if((p1Flag == true) && (p2Flag == true))
-    window.location.href = "../html/skocko-igra.html";
+    window.location.href = "../html/skocko-podesavanja.html";
 
 }
 
@@ -70,7 +62,7 @@ function setP2() {
     p1Flag = 1;
 
     if((p1Flag == true) && (p2Flag == true))
-    window.location.href = "../html/skocko-igra.html";
+    window.location.href = "../html/skocko-podesavanja.html";
 
 }
 
@@ -106,7 +98,7 @@ function addElement(){
             for(var i = 0; i < 4; i++){
 
                 if(cvarkov[i] == 0){
-                    cvarkov[i] = this;
+                    cvarkov[i] = this.id;
                     document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
                     document.getElementById(i+1).addEventListener('click',removeElement);
                     break;
@@ -120,7 +112,7 @@ function addElement(){
             for(var i = 0; i < 4; i++){
 
                 if(boskic[i] == 0){
-                    boskic[i] = this;
+                    boskic[i] = this.id;
                     document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
                     document.getElementById(i+1).addEventListener('click',removeElement);
                     break;
@@ -173,8 +165,18 @@ function endTurn(){
 
     if(isFull(cvarkov) && isFull(boskic)){ ////ekskluzivno za ekran za podesavanja
 
-        localStorage.setItem('Igrac1', cvarkov);
-        localStorage.setItem('Igrac2', boskic);
+        localStorage.setItem('Igrac1', JSON.stringify(cvarkov));
+        localStorage.setItem('Igrac2', JSON.stringify(boskic));
+
+        document.getElementById('Skocko').removeEventListener('click',addElement);
+        document.getElementById('Kordun').removeEventListener('click',addElement);
+        document.getElementById('Lika').removeEventListener('click',addElement);
+        document.getElementById('Banija').removeEventListener('click',addElement);
+        document.getElementById('Slavonija').removeEventListener('click',addElement);
+        document.getElementById('RepublikaRrspka').removeEventListener('click',addElement);
+    
+        document.getElementById('Potvrdi').removeEventListener('click',endTurn);
+
         window.location.href = "../html/skocko-igra.html";
 
     }
@@ -199,15 +201,115 @@ function isFull(arr){
 
 var timer = 60;
 
+var row = 0,col = 0;
+
 function initIgra(){
     
     document.getElementById('Start').addEventListener('click', startTimer);
     document.getElementById('NovaIgra').addEventListener('click', newGame);
+
+    cvarkov = JSON.parse(localStorage.getItem('Igrac1'));
+    boskic = JSON.parse(localStorage.getItem('Igrac2'));
+
+    document.getElementById('Skocko1').addEventListener('click',addSign);
+    document.getElementById('Kordun1').addEventListener('click',addSign);
+    document.getElementById('Lika1').addEventListener('click',addSign);
+    document.getElementById('Banija1').addEventListener('click',addSign);
+    document.getElementById('Slavonija1').addEventListener('click',addSign);
+    document.getElementById('RepublikaRrspka1').addEventListener('click',addSign);
+
+    document.getElementById('dd0').addEventListener('click',check);
+    document.getElementById('dd1').addEventListener('click',check);
+    document.getElementById('dd2').addEventListener('click',check);
+    document.getElementById('dd3').addEventListener('click',check);
+    document.getElementById('dd4').addEventListener('click',check);
+    document.getElementById('dd5').addEventListener('click',check);
+    document.getElementById('dd6').addEventListener('click',check);
+
 }
 
+///////////////////////////////////////////////////////////
+
+function addSign(){
+
+    var icon = this.id; 
+
+    switch(turn){
+
+        case "Cvarkov":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(model.matrix[row].pokusaj[i] == 0){
+                    icon = icon.slice(0,-1);
+                    model.matrix[row].pokusaj[i] = icon;
+                    document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ (i+1) + "y" +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById("" + (i+1) + "y").addEventListener('click',removeElement);
+                    break;
+                }
+
+            }
+            break;
+        }
+        case "Boskic":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(boskic[i] == 0){
+                    boskic[i] = this.id;
+                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + row + col + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById(i+1).addEventListener('click',removeElement);
+                    break;
+                }
+
+            }
+            break;
+        }
+    }
+
+
+}
+
+///////////////////////////////////////////////////////////
+function check(){ 
+    col = 0;
+
+    switch(turn){
+
+        case "Cvarkov":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(model.matrix[row].pokusaj[i] == cvarkov[i]) model.matrix[row].pogodak[i] = true;
+                else model.matrix[row].pogodak[i] = false;
+
+            }
+
+            for(var i = 0; i < 4; i++){
+                for(var j = 0; j < 4; j++){
+
+                    if(model.matrix[row].pogodak[i] == true) break;
+                    if(model.matrix[row].pokusaj[i] == cvarkov[j])
+                    model.matrix[row].cnt++;
+
+                }
+            }
+
+
+            break;
+        }
+        case "Boskic":{
+
+            break;
+        }
+    }
+
+
+}
 
 ///////////////////////////////////////////////////////////
                 /////// TIMER ///////
+///////////////////////////////////////////////////////////
 
 function startTimer() {
 
@@ -239,9 +341,42 @@ function resetTimer(){
 ///////////////////////////////////////////////////////////
 
 function newGame(){
-    //DON'T FORGET TO CHANGE LOCAL STORAGE!!!!!
+
+    localStorage.setItem('Igrac1',0);
+    localStorage.setItem('Igrac1',0);
+    
     window.location.href = "../html/skocko-podesavanja.html";
 }
+
+function endGame(){
+
+
+    if(pobeda == "Boskic"){
+
+        var x = document.createElement("VIDEO");
+
+        x.setAttribute("src","../video/Boskic pobeda.mp4");
+
+        x.setAttribute("width", "320");
+        x.setAttribute("height", "240");
+        x.setAttribute("controls", "controls");
+        document.body.appendChild(x);
+
+    }
+    else if(pobeda == "Cvarkov"){
+
+        var x = document.createElement("VIDEO");
+
+        x.setAttribute("src","../video/Boskic pobeda.mp4"); //ko gubi ima pravo da se ljuti video
+
+        x.setAttribute("width", "320");
+        x.setAttribute("height", "240");
+        x.setAttribute("controls", "controls");
+        document.body.appendChild(x);
+
+    } 
+}
+
 
 ///////////////////////////////////////////////////////////
 window.onload = start;
