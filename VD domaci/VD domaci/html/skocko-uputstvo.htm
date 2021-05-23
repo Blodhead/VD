@@ -7,6 +7,8 @@
     <title>Slagalika</title>
 <link rel="stylesheet" type="text/css" href="../css/background.css" /> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type='text/javascript' src='../java/script.js'></script>
+
 </head>
 
 <body class="uvodna">
@@ -37,7 +39,7 @@
                 <div class="row">
                     <div class="offset-5"></div>
                     <div class="col-2">
-                        <button class="btn btn-primary" id="Cvarak" onclick="document.getElementById('sound1').play(); document.getElementById('Cvarak').disabled = true;">Јашта!</button>
+                        <button class="btn btn-primary" id="Cvarak" onclick="document.getElementById('sound1').play(); document.getElementById('Cvarak').disabled = true; setP1Flag();">Јашта!</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -57,7 +59,7 @@
                 <div class="row">
                     <div class="offset-5"></div>
                     <div class="col-2">
-                        <button class="btn btn-warning" id="Bosko" onclick="document.getElementById('sound1').play();  document.getElementById('Bosko').disabled = true;">Разумео!</button>
+                        <button class="btn btn-warning" id="Bosko" onclick="document.getElementById('sound1').play();  document.getElementById('Bosko').disabled = true; setP2Flag();">Разумео!</button>
                     </div>
                     <div class="col-5"></div>
                 </div>

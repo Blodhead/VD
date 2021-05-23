@@ -76,6 +76,11 @@ div.row.correct{
 .icons{
 width: 60px;
 height: 60px;
+cursor: pointer;
+}
+
+button{
+    cursor: pointer;
 }
 
 .border-primary{
