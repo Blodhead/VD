@@ -15,16 +15,11 @@ var znak = ["Skoocko", "Kordun", "Lika", "Banija", "Slavonija", "RS"];
 
 var model = {
 
-    combination1:[
-        {location:[0,0,0,0]}
-    ],
-    combination2:[
-        {location:[0,0,0,0]}
-    ],
-
-///////////////////////////////////////////////////////////
+    combination1:[0,0,0,0],
+    combination2:[0,0,0,0]
 
 }
+///////////////////////////////////////////////////////////
 
 
 ///////////////// START - INITIALIZATION //////////////////
@@ -82,11 +77,121 @@ function setP2() {
 ///////////////////// PODESAVANJA /////////////////////////
 
 var cvarkov = [0,0,0,0]
-var bosko = [0,0,0,0]
+var boskic = [0,0,0,0]
+
+var turn = "Cvarkov"
 
 function initPodesavanja(){
 
+    document.getElementById('Skocko').addEventListener('click',addElement);
+    document.getElementById('Kordun').addEventListener('click',addElement);
+    document.getElementById('Lika').addEventListener('click',addElement);
+    document.getElementById('Banija').addEventListener('click',addElement);
+    document.getElementById('Slavonija').addEventListener('click',addElement);
+    document.getElementById('RepublikaRrspka').addEventListener('click',addElement);
 
+    document.getElementById('Potvrdi').addEventListener('click',endTurn);
+
+}
+///////////////////////////////////////////////////////////
+
+function addElement(){
+
+    var icon = this.id; 
+
+    switch(turn){
+
+        case "Cvarkov":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(cvarkov[i] == 0){
+                    cvarkov[i] = this;
+                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById(i+1).addEventListener('click',removeElement);
+                    break;
+                }
+
+            }
+            break;
+        }
+        case "Boskic":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(boskic[i] == 0){
+                    boskic[i] = this;
+                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById(i+1).addEventListener('click',removeElement);
+                    break;
+                }
+
+            }
+            break;
+        }
+    }
+
+}
+
+///////////////////////////////////////////////////////////
+
+function removeElement(){
+
+    if(turn == "Cvarkov"){
+        cvarkov[(parseInt(this.id)-1)] = 0;
+        document.getElementById('n' + this.id).innerHTML = "";
+    }
+    else if(turn == "Boskic"){
+        boskic[(parseInt(this.id)-1)] = 0;
+        document.getElementById('n' + this.id).innerHTML = "";
+    }
+
+}
+
+///////////////////////////////////////////////////////////
+
+function endTurn(){
+
+    if(turn == "Cvarkov") {
+
+        if(isFull(cvarkov) == true)
+        turn = "Boskic";
+        else {alert("Чварков, унесите све ознаке, немојте се зафркавати...");return;}
+
+    }
+    else {
+        if(isFull(boskic) == true)
+        turn = "Cvarkov";
+        else {alert("Бошкић, унесите све знакове!"); return;}
+        } 
+
+    for(var i = 0; i < 4; i++){
+        //mora i za citavu matricu da radi!!!!!
+        document.getElementById('n' + (i+1)).innerHTML =  "" ;
+
+    }
+
+    if(isFull(cvarkov) && isFull(boskic)){ ////ekskluzivno za ekran za podesavanja
+
+        localStorage.setItem('Igrac1', cvarkov);
+        localStorage.setItem('Igrac2', boskic);
+        window.location.href = "../html/skocko-igra.html";
+
+    }
+
+}
+
+///////////////////////////////////////////////////////////
+
+function isFull(arr){
+
+    for(var i = 0; i < arr.length ; i++){
+
+        if(arr[i] == 0) return false;
+
+    }
+
+    return true;
 
 }
 
@@ -109,7 +214,7 @@ function startTimer() {
     min = parseInt(timer);
 
     if (timer < 1) {
-        document.getElementById('time-left').innerHTML = "Време истекло!";
+        document.getElementById('time-left').innerHTML = "Време је истекло!";
         document.getElementById("time").innerHTML = min.toString();
         return;
     }

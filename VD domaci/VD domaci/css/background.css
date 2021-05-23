@@ -105,6 +105,5 @@ div.center {
     transform: translate(-50%, -50%);
     border: 5px solid #6F95DB;
     padding: 10px;
-    border: solid;
     backdrop-filter: blur(8px) saturate(150%) contrast(40%) drop-shadow(4px 4px 10px gray);
 }
