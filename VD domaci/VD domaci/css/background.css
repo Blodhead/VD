@@ -15,14 +15,14 @@ table.icons{
 
 table.dugmad{
 
-border-spacing: 15px 39px;
-margin-left: 35px;
+    border-spacing: 15px 39px;
+    margin-left: 35px;
 
 }
 
 table.tabela {
     border-collapse:separate;
-  }
+}
 
 .container{
     margin-top: 10px;
@@ -53,6 +53,7 @@ table#board{
     background-color: #6F95DB;
     border-collapse: separate;
 }
+
 td.board{
     border-radius: 10px;
     background-color: #6F95DB;
@@ -65,7 +66,7 @@ td.board{
 div.row.playground{
 
     border: solid;
-
+    backdrop-filter: blur(8px) saturate(150%) contrast(40%) drop-shadow(4px 4px 10px gray);
 }
 
 div.row.correct{
@@ -74,9 +75,9 @@ div.row.correct{
 }
 
 .icons{
-width: 60px;
-height: 60px;
-cursor: pointer;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 }
 
 button{
@@ -95,4 +96,15 @@ button{
     padding: 10px;
     width: 60px;
 
-  }
+}
+
+div.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #6F95DB;
+    padding: 10px;
+    border: solid;
+    backdrop-filter: blur(8px) saturate(150%) contrast(40%) drop-shadow(4px 4px 10px gray);
+}

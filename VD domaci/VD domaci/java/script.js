@@ -26,37 +26,38 @@ var model = {
 
 }
 
-var p1Flag;
-var p2Flag;
-//////////////////////////////////////////////////////////
+
+///////////////// START - INITIALIZATION //////////////////
+
+
 
 function start(){
     //SETUP
-        init();
+
+    if(window.location.href.includes('skocko-uputstvo.htm'))
+        initUputstvo();
+        else if(window.location.href.includes('skocko-igra.html'))
+        initIgra();
+        else initPodesavanja();
+    
+    
 };
 
+////////////////////// UPUTSTVO //////////////////////////
 
+var p1Flag;
+var p2Flag;
 
+function initUputstvo(){
 
-///////////////////////////////////////////////////////////
-
-function init(){
-    
-	var player1Button = document.getElementById("Cvarak");
-    var player2Button = document.getElementById("Bosko");
-
-    player1Button.addEventListener("click", setP1);
-    player2Button.addEventListener("click", setP2);
+    document.getElementById("Cvarak").addEventListener("click", setP1);
+    document.getElementById("Bosko").addEventListener("click", setP2);
 
 	//var i1=localStorage.getItem("names1");
 	//var i2=localStorage.getItem("names2");
 	
 	//model.ships1 = JSON.parse(i1);
 	//model.ships2 = JSON.parse(i2);
-	
-/*if(first_turn == 0){
-for (var i = 0 ; i< model.numShips;i++)
-showShips(model.ships2[i]);}*/
 
 };
 
@@ -78,4 +79,65 @@ function setP2() {
 
 }
 
+///////////////////// PODESAVANJA /////////////////////////
+
+var cvarkov = [0,0,0,0]
+var bosko = [0,0,0,0]
+
+function initPodesavanja(){
+
+
+
+}
+
+///////////////////////// IGRA ////////////////////////////
+
+var timer = 60;
+
+function initIgra(){
+    
+    document.getElementById('Start').addEventListener('click', startTimer);
+    document.getElementById('NovaIgra').addEventListener('click', newGame);
+}
+
+
+///////////////////////////////////////////////////////////
+                /////// TIMER ///////
+
+function startTimer() {
+
+    min = parseInt(timer);
+
+    if (timer < 1) {
+        document.getElementById('time-left').innerHTML = "Време истекло!";
+        document.getElementById("time").innerHTML = min.toString();
+        return;
+    }
+
+    document.getElementById("time").innerHTML = min.toString();
+    timer--;
+
+    setTimeout(function () {
+        startTimer();
+    }, 1000);
+
+}
+
+function resetTimer(){
+
+    document.getElementById('time-left').innerHTML = "Преостало време за погађање:";
+    document.getElementById("time").innerHTML = min.toString();
+    timer = 60;
+
+}
+
+///////////////////////////////////////////////////////////
+
+function newGame(){
+    //DON'T FORGET TO CHANGE LOCAL STORAGE!!!!!
+    window.location.href = "../html/skocko-podesavanja.html";
+}
+
+///////////////////////////////////////////////////////////
 window.onload = start;
+///////////////////////////////////////////////////////////

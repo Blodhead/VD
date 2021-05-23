@@ -7,6 +7,7 @@
     <title>Slagalika</title>
     <link rel="stylesheet" type="text/css" href="../css/background.css" /> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type='text/javascript' src='../java/script.js'></script>
 </head>
 <body style="background-color: #6F95DB;">
 
@@ -27,7 +28,7 @@
 
     <div class="container global">
 
-        <div class="row playground border-primary" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%) contrast(40%) drop-shadow(4px 4px 10px gray);">
+        <div class="row playground border-primary">
             
             <div class="col offset-1"></div>
 
@@ -189,7 +190,7 @@
 
                             <div class="row" style="margin: 10px;">
 
-                                <div class="col-12"><button type="button" class="btn btn-primary" style=" width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;">Nova Igra</button></div>
+                                <div class="col-12"><button type="button" id="NovaIgra" class="btn btn-primary" style=" width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;">Nova Igra</button></div>
 
                             </div>
 
@@ -210,7 +211,7 @@
 
                         </div>
 
-                        <div style="margin-bottom: 20px; font-size: medium; font-family:cursive; color: white;">Преостало време за погађање:</div>
+                        <div id="time-left" style="margin-bottom: 20px; font-size: medium; font-family:cursive; color: white;">Преостало време за погађање:</div>
                         <div>
                             <span id="timer">
                               <span id="time" style="color:black">60</span>      
