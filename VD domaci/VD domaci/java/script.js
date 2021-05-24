@@ -234,38 +234,39 @@ function addSign(){
 
     var icon = this.id; 
 
-    switch(turn){
+    //switch(turn){
 
-        case "Cvarkov":{
+        //case "Cvarkov":{
 
             for(var i = 0; i < 4; i++){
 
                 if(model.matrix[row].pokusaj[i] == 0){
                     icon = icon.slice(0,-1);
                     model.matrix[row].pokusaj[i] = icon;
-                    document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ (i+1) + "y" +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
-                    document.getElementById("" + (i+1) + "y").addEventListener('click',removeSign);
+                    document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById("2" + row + (i+1)).addEventListener('click',removeSign);
                     break;
                 }
 
             }
-            break;
-        }
-        case "Boskic":{
+ //           break;
+  //      }
+   /*     case "Boskic":{
 
             for(var i = 0; i < 4; i++){
 
                 if(boskic[i] == 0){
-                    boskic[i] = this.id;
-                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + row + col + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
-                    document.getElementById(i+1).addEventListener('click',removeSign);
+                    icon = icon.slice(0,-1);
+                    model.matrix[row].pokusaj[i] = icon;
+                    document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById("" + (i+1)).addEventListener('click',removeSign);
                     break;
                 }
 
             }
             break;
-        }
-    }
+        }*/
+    //}
 
 
 }
@@ -273,14 +274,10 @@ function addSign(){
 
 function removeSign(){
 
-    if(turn == "Cvarkov"){
-        cvarkov[(parseInt(this.id)-1)] = 0;
-        document.getElementById('1' + this.id).innerHTML = "";
-    }
-    else if(turn == "Boskic"){
-        boskic[(parseInt(this.id)-1)] = 0;
-        document.getElementById('1' + this.id).innerHTML = "";
-    }
+    document.getElementById(this.id).removeEventListener('click',removeSign);
+    document.getElementById(""+ row + (parseInt(this.id)- parseInt("2" + row + "1"))).innerHTML = "";
+    model.matrix[row].pokusaj[parseInt(this.id)-parseInt("2" + row + "1")] = 0;
+    document.getElementById("dd" + row).disabled = true;
 
 }
 
