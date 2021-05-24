@@ -211,6 +211,7 @@ function initIgra(){
     cvarkov = JSON.parse(localStorage.getItem('Igrac1'));
     boskic = JSON.parse(localStorage.getItem('Igrac2'));
 
+    turn = "Boskic";
 
     buttonsON(true);
 
@@ -282,22 +283,22 @@ function provera(igr){
                 correct++;
             }
 
-        }
+        }  
 
         for(var i = 0; i < 4; i++){
 
-           // if(igrac.matrix[0].pogodak[i] == 1 || igrac.matrix[0].pogodak[i] == 2) continue;
+            if(igrac.matrix[0].pogodak[i] != 1)
+            for(var j = 0; j < 4; j++)
+                if(model.matrix[row].pogodak[j] != true)
 
-            for(var j = 0; j < 4; j++){
-                
-                if(model.matrix[row].pogodak[j] == false)
-                if(igrac.matrix[0].kombinacija[i] == model.matrix[row].pokusaj[j]){
-                    model.matrix[row].pogodak[j] = true;
-                    igrac.matrix[0].pogodak[j] = 2;
+                    if(model.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
+                    igrac.matrix[0].pogodak[i] = 2;
                     wrong++;
+                    model.matrix[row].pogodak[j] = true;
                     break;
-                }
-            }
+                    }
+
+
         }
 
         for(var i = 0 ; i < 4 ; i++){
@@ -336,14 +337,21 @@ function endTurn(){
         row--;
         document.getElementById("Sledeci").innerHTML = "Освијили сте: " + pobeda + " поена! <br> <button id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
         document.getElementById("Ddugme").addEventListener('click',nextPlayer);
+
+        for(var i = 0; i < 4; i++)
+        if(turn == "Boskic")
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";
+        else
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
+
     }
 
 }
 
 function nextPlayer(){
 
-    if(turn = "Cvarkov"){
-        turn = "Boskic"
+    if(turn = "Boskic"){
+        turn = "Cvarkov"
         document.getElementById('Start').disabled = false;
     }
 
@@ -362,6 +370,13 @@ function nextPlayer(){
 
     row=0;
     document.getElementById("Sledeci").innerHTML = "";
+
+    for(var i = 0; i < 4; i++)
+    if(turn == "Boskic")
+    document.getElementById('n' + (i+1)).innerHTML = "";
+    else
+    document.getElementById('n' + (i+1)).innerHTML = "";
+
     buttonsON(true);
 
 }
