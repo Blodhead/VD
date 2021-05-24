@@ -85,6 +85,8 @@ function initPodesavanja(){
 
     document.getElementById('Potvrdi').addEventListener('click',endPodesavanjaTurn);
 
+    document.getElementById('igraci').innerHTML = "На потезу је Чварков!";
+
 }
 ///////////////////////////////////////////////////////////
 
@@ -150,7 +152,7 @@ function endPodesavanjaTurn(){
         if(isFull(cvarkov) == true)
         turn = "Boskic";
         else {alert("Чварков, унесите све ознаке, немојте се зафркавати...");return;}
-
+        document.getElementById('igraci').innerHTML = "На потезу је Бошкић!";
     }
     else {
         if(isFull(boskic) == true)
@@ -203,6 +205,7 @@ function isFull(arr){
 var timer = 60;
 
 var row = 0,col = 0;
+var wait = true;
 
 function initIgra(){
     
@@ -214,7 +217,7 @@ function initIgra(){
 
     turn = "Boskic";
 
-    buttonsON(true);
+    buttonsON(false);
 
 }
 
@@ -255,7 +258,7 @@ function check(){
     switch(turn){
 
         case "Cvarkov":{provera(cvarkov); cvarcici--; poeni = cvarcici; break;}
-        case "Boskic":{provera(boskic); boskici; poeni = boskici; break;}
+        case "Boskic":{provera(boskic); boskici--; poeni = boskici; break;}
 
     }
 
@@ -305,13 +308,13 @@ function provera(igr){
 
     for(var i = 0 ; i < 4 ; i++){
         
-        if(correct-- > 0){
+        if(correct-- > 0)
             document.getElementById('1' + row + i).style.backgroundColor = "red";
 
-        }
         else if(wrong-- >0)
 
             document.getElementById('1' + row + i).style.backgroundColor = "yellow";
+
     }
 
     document.getElementById("dd" + row).disabled = true;
@@ -354,10 +357,6 @@ function endTurn(){
 
 function nextPlayer(){
 
-    if(turn == "Boskic"){
-        turn = "Cvarkov"
-        document.getElementById('Start').disabled = false;
-    }else if(turn == "Cvarkov") endGame();
 
     while(row>=0){
         for(var i = 0; i < 4 ; i++){
@@ -380,6 +379,11 @@ function nextPlayer(){
     document.getElementById('n' + (i+1)).innerHTML = "";
     else
     document.getElementById('n' + (i+1)).innerHTML = "";
+
+    if(turn == "Boskic"){
+        turn = "Cvarkov"
+        //document.getElementById('Start').disabled = false;
+    }else if(turn == "Cvarkov") {endGame();return;}
 
     buttonsON(true);
 
@@ -451,6 +455,14 @@ function buttonsON(bool){
 
 function startTimer() {
 
+    if(wait == true){
+
+        setTimeout(function(){ alert("Почиње играч Чварков"); }, 0); 
+        wait = false;
+        buttonsON(true);
+
+    }
+
     min = parseInt(timer);
 
     if (timer < 1) {
@@ -488,8 +500,10 @@ function newGame(){
 
 function endGame(){
 
-    if(cvarcici => boskici) pobeda = "Cvarkov"
+    if(cvarcici >= boskici) pobeda = "Cvarkov"
     else pobeda = "Boskic";
+
+    document.getElementById('Voditeljka').pause();
 
     if(pobeda == "Boskic"){
 
@@ -497,24 +511,31 @@ function endGame(){
 
         x.setAttribute("src","../video/Boskic pobeda.mp4");
 
-        x.setAttribute("width", "320");
-        x.setAttribute("height", "240");
-        x.setAttribute("controls", "controls");
-        document.body.appendChild(x);
+        x.setAttribute("width", "270");
+        x.setAttribute("height", "190");
+        x.setAttribute("autoplay", "autoplay");
+        document.getElementById("time-left").innerHTML = "Честитам на победи Бошкић, али дошло је до преступа...";
+        document.getElementById("timer").innerHTML = "";
+        document.getElementById("time-left").appendChild(x);
 
     }
     else if(pobeda == "Cvarkov"){
 
         var x = document.createElement("VIDEO");
 
-        x.setAttribute("src","../video/Boskic pobeda.mp4"); //ko gubi ima pravo da se ljuti video
+        x.setAttribute("src","../video/Cvarkov pobeda.mp4");
 
-        x.setAttribute("width", "320");
-        x.setAttribute("height", "240");
-        x.setAttribute("controls", "controls");
-        document.body.appendChild(x);
+        x.setAttribute("width", "270");
+        x.setAttribute("height", "190");
+        x.setAttribute("autoplay", "autoplay");
+        document.getElementById("time-left").innerHTML = "Честитам Ђорђе Чварков!";
+        document.getElementById("timer").innerHTML = "";
+        document.getElementById("time-left").appendChild(x);
 
     } 
+
+    buttonsON(false);
+
 }
 
 
