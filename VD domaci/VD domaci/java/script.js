@@ -273,28 +273,34 @@ function addSign(){
 ///////////////////////////////////////////////////////////
 function check(){ 
     col = 0;
-
+    var temp = 0;
     switch(turn){
 
         case "Cvarkov":{
 
             for(var i = 0; i < 4; i++){
 
-                if(model.matrix[row].pokusaj[i] == cvarkov[i]) model.matrix[row].pogodak[i] = true;
-                else model.matrix[row].pogodak[i] = false;
+                if(model.matrix[row].pokusaj[i] == cvarkov[i]) {model.matrix[row].pogodak[i] = 1; temp++;}
+                else model.matrix[row].pogodak[i] = 0;
 
             }
 
             for(var i = 0; i < 4; i++){
                 for(var j = 0; j < 4; j++){
 
-                    if(model.matrix[row].pogodak[i] == true) break;
+                    if(model.matrix[row].pogodak[i] == 1) break;
                     if(model.matrix[row].pokusaj[i] == cvarkov[j])
-                    model.matrix[row].cnt++;
+                    model.matrix[row].pogodak[i] = 2;
 
                 }
             }
 
+            for(var i = 0 ; i < 4 ; i++){
+                if(model.matrix[row].pogodak[i] == 1)
+                document.getElementById('1' + row + i).style.backgroundColor = "red";
+                else if(model.matrix[row].pogodak[i] == 2)
+                document.getElementById('1' + row + i).style.backgroundColor = "yellow";
+            }
 
             break;
         }
