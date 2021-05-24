@@ -244,7 +244,7 @@ function addSign(){
                     icon = icon.slice(0,-1);
                     model.matrix[row].pokusaj[i] = icon;
                     document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ (i+1) + "y" +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
-                    document.getElementById("" + (i+1) + "y").addEventListener('click',removeElement);
+                    document.getElementById("" + (i+1) + "y").addEventListener('click',removeSign);
                     break;
                 }
 
@@ -258,7 +258,7 @@ function addSign(){
                 if(boskic[i] == 0){
                     boskic[i] = this.id;
                     document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + row + col + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
-                    document.getElementById(i+1).addEventListener('click',removeElement);
+                    document.getElementById(i+1).addEventListener('click',removeSign);
                     break;
                 }
 
@@ -269,6 +269,21 @@ function addSign(){
 
 
 }
+///////////////////////////////////////////////////////////
+
+function removeSign(){
+
+    if(turn == "Cvarkov"){
+        cvarkov[(parseInt(this.id)-1)] = 0;
+        document.getElementById('1' + this.id).innerHTML = "";
+    }
+    else if(turn == "Boskic"){
+        boskic[(parseInt(this.id)-1)] = 0;
+        document.getElementById('1' + this.id).innerHTML = "";
+    }
+
+}
+
 
 ///////////////////////////////////////////////////////////
 function check(){ 
@@ -294,17 +309,51 @@ function check(){
 
                 }
             }
-
+            var j = 0;
             for(var i = 0 ; i < 4 ; i++){
-                if(model.matrix[row].pogodak[i] == 1)
-                document.getElementById('1' + row + i).style.backgroundColor = "red";
+                
+                if(model.matrix[row].pogodak[i] == 1){
+                    document.getElementById('1' + row + i).style.backgroundColor = "red";
+                    j++;
+                }
                 else if(model.matrix[row].pogodak[i] == 2)
-                document.getElementById('1' + row + i).style.backgroundColor = "yellow";
+                    document.getElementById('1' + row + j).style.backgroundColor = "yellow";
             }
+
+            row++;
 
             break;
         }
         case "Boskic":{
+
+            for(var i = 0; i < 4; i++){
+
+                if(model.matrix[row].pokusaj[i] == boskic[i]) {model.matrix[row].pogodak[i] = 1; temp++;}
+                else model.matrix[row].pogodak[i] = 0;
+
+            }
+
+            for(var i = 0; i < 4; i++){
+                for(var j = 0; j < 4; j++){
+
+                    if(model.matrix[row].pogodak[i] == 1) break;
+                    if(model.matrix[row].pokusaj[i] == boskic[j])
+                    model.matrix[row].pogodak[i] = 2;
+
+                }
+            }
+            var j = 0;
+            for(var i = 0 ; i < 4 ; i++){
+                
+                if(model.matrix[row].pogodak[i] == 1){
+                    document.getElementById('1' + row + i).style.backgroundColor = "red";
+                    j++;
+                }
+                else if(model.matrix[row].pogodak[i] == 2)
+                    document.getElementById('1' + row + j).style.backgroundColor = "yellow";
+            }
+
+            row++;
 
             break;
         }
