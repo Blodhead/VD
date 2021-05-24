@@ -277,7 +277,6 @@ function removeSign(){
     document.getElementById(this.id).removeEventListener('click',removeSign);
     document.getElementById(""+ row + (parseInt(this.id)- parseInt("2" + row + "1"))).innerHTML = "";
     model.matrix[row].pokusaj[parseInt(this.id)-parseInt("2" + row + "1")] = 0;
-    document.getElementById("dd" + row).disabled = true;
 
 }
 
@@ -317,9 +316,12 @@ function check(){
                     document.getElementById('1' + row + j).style.backgroundColor = "yellow";
             }
 
+            document.getElementById("dd" + row).disabled = true;
+
             row++;
 
             break;
+            
         }
         case "Boskic":{
 
@@ -349,6 +351,8 @@ function check(){
                 else if(model.matrix[row].pogodak[i] == 2)
                     document.getElementById('1' + row + j).style.backgroundColor = "yellow";
             }
+
+            document.getElementById("dd" + row).disabled = true;
 
             row++;
 
