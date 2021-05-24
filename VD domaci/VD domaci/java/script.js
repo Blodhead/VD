@@ -2,8 +2,9 @@
 
 pobeda = "Torbica"
 
-cvarci = 0;
-boskici = 0;
+cvarcici = 7;
+boskici = 7;
+poeni = 0;
 
 var model = {
     
@@ -253,8 +254,9 @@ function check(){
 
     switch(turn){
 
-        case "Cvarkov":{provera(cvarkov); break;}
-        case "Boskic":{provera(boskic); break;}
+        case "Cvarkov":{provera(cvarkov); cvarcici--; poeni = cvarcici; break;}
+        case "Boskic":{provera(boskic); boskici; poeni = boskici; break;}
+
     }
 
     endTurn();
@@ -264,59 +266,59 @@ function check(){
 
 function provera(igr){
     var correct = 0, wrong = 0;
-    {
-        var igrac = {
+    
+    var igrac = {
 
-            matrix : [
-        
-            {kombinacija:[0,0,0,0], pogodak : [0,0,0,0]}            
-        ]
-        }
-
-        igrac.matrix[0].kombinacija = igr;
-
-        for(var i = 0; i < 4; i++){
-
-            if(model.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
-                model.matrix[row].pogodak[i] = true; 
-                igrac.matrix[0].pogodak[i] = 1;
-                correct++;
-            }
-
-        }  
-
-        for(var i = 0; i < 4; i++){
-
-            if(igrac.matrix[0].pogodak[i] != 1)
-            for(var j = 0; j < 4; j++)
-                if(model.matrix[row].pogodak[j] != true)
-
-                    if(model.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
-                    igrac.matrix[0].pogodak[i] = 2;
-                    wrong++;
-                    model.matrix[row].pogodak[j] = true;
-                    break;
-                    }
-
-
-        }
-
-        for(var i = 0 ; i < 4 ; i++){
-            
-            if(correct-- > 0){
-                document.getElementById('1' + row + i).style.backgroundColor = "red";
-
-            }
-            else if(wrong-- >0)
-
-                document.getElementById('1' + row + i).style.backgroundColor = "yellow";
-        }
-
-        document.getElementById("dd" + row).disabled = true;
-
-        row++;
-        
+        matrix : [
+    
+        {kombinacija:[0,0,0,0], pogodak : [0,0,0,0]}            
+    ]
     }
+
+    igrac.matrix[0].kombinacija = igr;
+
+    for(var i = 0; i < 4; i++){
+
+        if(model.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
+            model.matrix[row].pogodak[i] = true; 
+            igrac.matrix[0].pogodak[i] = 1;
+            correct++;
+        }
+
+    }  
+
+    for(var i = 0; i < 4; i++){
+
+        if(igrac.matrix[0].pogodak[i] != 1)
+        for(var j = 0; j < 4; j++)
+            if(model.matrix[row].pogodak[j] != true)
+
+                if(model.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
+                igrac.matrix[0].pogodak[i] = 2;
+                wrong++;
+                model.matrix[row].pogodak[j] = true;
+                break;
+                }
+
+
+    }
+
+    for(var i = 0 ; i < 4 ; i++){
+        
+        if(correct-- > 0){
+            document.getElementById('1' + row + i).style.backgroundColor = "red";
+
+        }
+        else if(wrong-- >0)
+
+            document.getElementById('1' + row + i).style.backgroundColor = "yellow";
+    }
+
+    document.getElementById("dd" + row).disabled = true;
+
+    row++;
+        
+    
 
 }
 
@@ -335,7 +337,7 @@ function endTurn(){
 
         buttonsON(false);
         row--;
-        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + pobeda + " поена! <br> <button id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
+        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
         document.getElementById("Ddugme").addEventListener('click',nextPlayer);
 
         for(var i = 0; i < 4; i++)
@@ -348,12 +350,14 @@ function endTurn(){
 
 }
 
+///////////////////////////////////////////////////////////
+
 function nextPlayer(){
 
-    if(turn = "Boskic"){
+    if(turn == "Boskic"){
         turn = "Cvarkov"
         document.getElementById('Start').disabled = false;
-    }
+    }else if(turn == "Cvarkov") endGame();
 
     while(row>=0){
         for(var i = 0; i < 4 ; i++){
@@ -484,6 +488,8 @@ function newGame(){
 
 function endGame(){
 
+    if(cvarcici => boskici) pobeda = "Cvarkov"
+    else pobeda = "Boskic";
 
     if(pobeda == "Boskic"){
 
