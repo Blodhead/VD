@@ -255,6 +255,14 @@ function removeSign(){
 ///////////////////////////////////////////////////////////
 function check(){ 
 
+    for(var i = 0; i < 4 ; i++){
+        if(document.getElementById("" + row + i).innerHTML == "&nbsp; ") {
+            alert("Нису сва пољу попуњена!");
+            return;
+        }
+
+    }
+
     switch(turn){
 
         case "Cvarkov":{provera(cvarkov); cvarcici--; poeni = cvarcici; break;}
@@ -340,7 +348,7 @@ function endTurn(){
 
         buttonsON(false);
         row--;
-        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
+        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button onclick=\"resetTimer()\" id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
         document.getElementById("Ddugme").addEventListener('click',nextPlayer);
 
         for(var i = 0; i < 4; i++)
@@ -465,18 +473,36 @@ function startTimer() {
 
     min = parseInt(timer);
 
-    if (timer < 1) {
+    if (timer < 1 && end == false) {
         document.getElementById('time-left').innerHTML = "Време је истекло!";
         document.getElementById("time").innerHTML = min.toString();
         return;
     }
-
+if(document.getElementById("time") != null)
     document.getElementById("time").innerHTML = min.toString();
     timer--;
+
+    if(parseInt(timer) == 0){
+
+        buttonsON(false);
+        row--;
+        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button onclick=\"resetTimer()\" id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
+        document.getElementById("Ddugme").addEventListener('click',nextPlayer);
+
+        for(var i = 0; i < 4; i++)
+        if(turn == "Boskic"){
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";boskici = 0;}
+        else{
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";cvarcici = 0;}
+
+        timer = 60;
+    }
 
     setTimeout(function () {
         startTimer();
     }, 1000);
+
+
 
 }
 
@@ -497,9 +523,14 @@ function newGame(){
     
     window.location.href = "../html/skocko-podesavanja.html";
 }
-
+var end = false;
 function endGame(){
 
+    timer = 0;
+    end = true;
+    clearTimeout(function () {
+        startTimer();
+    }, 1000);
     if(cvarcici >= boskici) pobeda = "Cvarkov"
     else pobeda = "Boskic";
 
