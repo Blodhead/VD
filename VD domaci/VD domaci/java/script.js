@@ -10,13 +10,13 @@ var model1 = {
     
     matrix : [
 
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
 
 ]
 }
@@ -25,13 +25,13 @@ var model2 = {
     
     matrix : [
 
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
-    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
+    {pokusaj : [0,0,0,0], pogodak : [0,0,0,0]},
 
 ]
 }
@@ -329,7 +329,7 @@ var correct = 0, wrong = 0;
         for(var i = 0; i < 4; i++){
 
             if(model1.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
-                model1.matrix[row].pogodak[i] = true; 
+                model1.matrix[row].pogodak[i] = 1; 
                 igrac.matrix[0].pogodak[i] = 1;
                 correct++;
             }
@@ -340,12 +340,12 @@ var correct = 0, wrong = 0;
 
             if(igrac.matrix[0].pogodak[i] != 1)
             for(var j = 0; j < 4; j++)
-                if(model1.matrix[row].pogodak[j] != true)
+                if(model1.matrix[row].pogodak[j] != 1 && model1.matrix[row].pogodak[j] != 2)
 
                     if(model1.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
                     igrac.matrix[0].pogodak[i] = 2;
                     wrong++;
-                    model1.matrix[row].pogodak[j] = true;
+                    model1.matrix[row].pogodak[j] = 2;
                     break;
                     }
 
@@ -373,7 +373,7 @@ var correct = 0, wrong = 0;
         for(var i = 0; i < 4; i++){
 
             if(model2.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
-                model2.matrix[row].pogodak[i] = true; 
+                model2.matrix[row].pogodak[i] = 1; 
                 igrac.matrix[0].pogodak[i] = 1;
                 correct++;
             }
@@ -384,12 +384,12 @@ var correct = 0, wrong = 0;
 
             if(igrac.matrix[0].pogodak[i] != 1)
             for(var j = 0; j < 4; j++)
-                if(model2.matrix[row].pogodak[j] != true)
+                if(model2.matrix[row].pogodak[j] != 1 && model2.matrix[row].pogodak[j] != 2)
 
                     if(model2.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
                     igrac.matrix[0].pogodak[i] = 2;
                     wrong++;
-                    model2.matrix[row].pogodak[j] = true;
+                    model2.matrix[row].pogodak[j] = 2;
                     break;
                     }
 
