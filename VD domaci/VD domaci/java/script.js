@@ -6,7 +6,22 @@ cvarcici = 7;
 boskici = 7;
 poeni = 0;
 
-var model = {
+var model1 = {
+    
+    matrix : [
+
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+    {pokusaj : [0,0,0,0], pogodak : [false,false,false,false]},
+
+]
+}
+
+var model2 = {
     
     matrix : [
 
@@ -202,7 +217,9 @@ function isFull(arr){
 
 ///////////////////////// IGRA ////////////////////////////
 
-var timer = 60;
+var timer1 = 60;
+var timer2 = 60;
+
 
 var row = 0,col = 0;
 var wait = true;
@@ -227,12 +244,26 @@ function addSign(){
 
     var icon = this.id; 
 
+    if(turn == "Cvarkov")
 
     for(var i = 0; i < 4; i++){
 
-        if(model.matrix[row].pokusaj[i] == 0){
+        if(model1.matrix[row].pokusaj[i] == 0){
             icon = icon.slice(0,-1);
-            model.matrix[row].pokusaj[i] = icon;
+            model1.matrix[row].pokusaj[i] = icon;
+            document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+            document.getElementById("2" + row + (i+1)).addEventListener('click',removeSign);
+            break;
+        }
+
+    }
+    else if (turn == "Boskic")
+
+    for(var i = 0; i < 4; i++){
+
+        if(model2.matrix[row].pokusaj[i] == 0){
+            icon = icon.slice(0,-1);
+            model2.matrix[row].pokusaj[i] = icon;
             document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
             document.getElementById("2" + row + (i+1)).addEventListener('click',removeSign);
             break;
@@ -247,7 +278,11 @@ function removeSign(){
 
     document.getElementById(this.id).removeEventListener('click',removeSign);
     document.getElementById(""+ row + (parseInt(this.id)- parseInt("2" + row + "1"))).innerHTML = "";
-    model.matrix[row].pokusaj[parseInt(this.id)-parseInt("2" + row + "1")] = 0;
+
+    if(turn == "Cvarkov")
+    model1.matrix[row].pokusaj[parseInt(this.id)-parseInt("2" + row + "1")] = 0;
+    else if (turn == "Boskic")
+    model2.matrix[row].pokusaj[parseInt(this.id)-parseInt("2" + row + "1")] = 0;
 
 }
 
@@ -270,14 +305,15 @@ function check(){
 
     }
 
-    endTurn();
 
 }
 //////////////////////////////////////////////////////////
 
 function provera(igr){
-    var correct = 0, wrong = 0;
+var correct = 0, wrong = 0;
     
+
+
     var igrac = {
 
         matrix : [
@@ -288,48 +324,92 @@ function provera(igr){
 
     igrac.matrix[0].kombinacija = igr;
 
-    for(var i = 0; i < 4; i++){
+    if(turn == "Cvarkov"){
+    
+        for(var i = 0; i < 4; i++){
 
-        if(model.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
-            model.matrix[row].pogodak[i] = true; 
-            igrac.matrix[0].pogodak[i] = 1;
-            correct++;
+            if(model1.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
+                model1.matrix[row].pogodak[i] = true; 
+                igrac.matrix[0].pogodak[i] = 1;
+                correct++;
+            }
+
+        }  
+
+        for(var i = 0; i < 4; i++){
+
+            if(igrac.matrix[0].pogodak[i] != 1)
+            for(var j = 0; j < 4; j++)
+                if(model1.matrix[row].pogodak[j] != true)
+
+                    if(model1.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
+                    igrac.matrix[0].pogodak[i] = 2;
+                    wrong++;
+                    model1.matrix[row].pogodak[j] = true;
+                    break;
+                    }
+
+
         }
 
-    }  
+        for(var i = 0 ; i < 4 ; i++){
+            
+            if(correct-- > 0)
+                document.getElementById('1' + row + i).style.backgroundColor = "red";
 
-    for(var i = 0; i < 4; i++){
+            else if(wrong-- >0)
 
-        if(igrac.matrix[0].pogodak[i] != 1)
-        for(var j = 0; j < 4; j++)
-            if(model.matrix[row].pogodak[j] != true)
+                document.getElementById('1' + row + i).style.backgroundColor = "yellow";
 
-                if(model.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
-                igrac.matrix[0].pogodak[i] = 2;
-                wrong++;
-                model.matrix[row].pogodak[j] = true;
-                break;
-                }
+        }
 
+        nextPlayer();
+            
+    }
+    else if(turn == "Boskic"){
+
+
+
+        for(var i = 0; i < 4; i++){
+
+            if(model2.matrix[row].pokusaj[i] == igrac.matrix[0].kombinacija[i]) {
+                model2.matrix[row].pogodak[i] = true; 
+                igrac.matrix[0].pogodak[i] = 1;
+                correct++;
+            }
+
+        }  
+
+        for(var i = 0; i < 4; i++){
+
+            if(igrac.matrix[0].pogodak[i] != 1)
+            for(var j = 0; j < 4; j++)
+                if(model2.matrix[row].pogodak[j] != true)
+
+                    if(model2.matrix[row].pokusaj[j] == igrac.matrix[0].kombinacija[i]){
+                    igrac.matrix[0].pogodak[i] = 2;
+                    wrong++;
+                    model2.matrix[row].pogodak[j] = true;
+                    break;
+                    }
+
+
+        }
+
+        for(var i = 0 ; i < 4 ; i++){
+            
+            if(correct-- > 0)
+                document.getElementById('1' + row + i).style.backgroundColor = "red";
+
+            else if(wrong-- >0)
+
+                document.getElementById('1' + row + i).style.backgroundColor = "yellow";
+
+        }
+            
+        nextPlayer();
 
     }
-
-    for(var i = 0 ; i < 4 ; i++){
-        
-        if(correct-- > 0)
-            document.getElementById('1' + row + i).style.backgroundColor = "red";
-
-        else if(wrong-- >0)
-
-            document.getElementById('1' + row + i).style.backgroundColor = "yellow";
-
-    }
-
-    document.getElementById("dd" + row).disabled = true;
-
-    row++;
-        
-    
 
 }
 
@@ -341,15 +421,12 @@ function endTurn(){
     var temp = 0;
 
     for(var i = 0; i < 4 ; i++){
-        if(document.getElementById("1" + (row-1) + i).style.backgroundColor == "red") temp++;
+        if(document.getElementById("1" + row + i).style.backgroundColor == "red") temp++;
     }
 
     if(temp == 4) {
 
-        buttonsON(false);
-        row--;
-        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button onclick=\"resetTimer()\" id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
-        document.getElementById("Ddugme").addEventListener('click',nextPlayer);
+        endGame();
 
         for(var i = 0; i < 4; i++)
         if(turn == "Boskic")
@@ -357,7 +434,11 @@ function endTurn(){
         else
         document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
 
+        return true;
+
     }
+
+    return false;
 
 }
 
@@ -365,35 +446,75 @@ function endTurn(){
 
 function nextPlayer(){
 
+    if(turn == "Cvarkov"){
 
-    while(row>=0){
-        for(var i = 0; i < 4 ; i++){
-        
-        model.matrix[row].pokusaj[i] = 0;
-        model.matrix[row].pogodak[i] = false;
+        for(var red = row; red >= 0 ; red--){
+            
+            for(var i = 0; i < 4; i++){
 
-        document.getElementById(""+ row + i).innerHTML = "";
-        document.getElementById('1' + row + i).style.backgroundColor = "rgb(139, 136, 136)";
+            document.getElementById(""+ red + i).innerHTML = "";
+            document.getElementById('1' + red + i).style.backgroundColor = "rgb(139, 136, 136)";
+
+            if(model2.matrix[red].pokusaj[i] != "")
+            document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"../Images/" + model2.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
+            if(model2.matrix[red].pogodak[i] == 1)
+            document.getElementById('1' + red + i).style.backgroundColor = "red";
+            if(model2.matrix[red].pogodak[i] == 2)
+            document.getElementById('1' + red + i).style.backgroundColor = "yellow";
+
+            }
+
+            if( document.getElementById('dd' + red).disabled != false){
+            document.getElementById('dd' + red).disabled = true;
+            document.getElementById('dd' + red).addEventListener('click',check);
+            }
 
         }
-        row--;
+
+        endTurn();
+
+        //startTimer();
+
+        row++;
+        turn = "Boskic";
+
+
     }
 
-    row=0;
-    document.getElementById("Sledeci").innerHTML = "";
+    else if(turn == "Boskic"){
 
-    for(var i = 0; i < 4; i++)
-    if(turn == "Boskic")
-    document.getElementById('n' + (i+1)).innerHTML = "";
-    else
-    document.getElementById('n' + (i+1)).innerHTML = "";
+        
+        if(endTurn()==true)return;/////////////
 
-    if(turn == "Boskic"){
-        turn = "Cvarkov"
-        //document.getElementById('Start').disabled = false;
-    }else if(turn == "Cvarkov") {endGame();return;}
+        for(var red = row; red >= 0 ; red--){
+            for(var i = 0; i < 4; i++){
 
-    buttonsON(true);
+            document.getElementById(""+ red + i).innerHTML = "";
+            document.getElementById('1' + red + i).style.backgroundColor = "rgb(139, 136, 136)";
+
+            if(model1.matrix[red].pokusaj[i] != "")
+            document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"../Images/" + model1.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
+            if(model1.matrix[red].pogodak[i] == 1)
+            document.getElementById('1' + red + i).style.backgroundColor = "red";
+            if(model1.matrix[red].pogodak[i] == 2)
+            document.getElementById('1' + red + i).style.backgroundColor = "yellow";
+
+            }
+
+        }
+
+        //startTimer();
+        
+        turn = "Cvarkov";
+
+
+    }
+
+/////////////////SAMO POBEDNICKI SCENARIO
+    // if(turn == "Boskic")
+    // document.getElementById('n' + (i+1)).innerHTML = "";
+    // else
+    // document.getElementById('n' + (i+1)).innerHTML = "";
 
 }
 
@@ -461,48 +582,60 @@ function buttonsON(bool){
                 /////// TIMER ///////
 ///////////////////////////////////////////////////////////
 
+var end = false;
+
 function startTimer() {
 
     if(wait == true){
 
-        setTimeout(function(){ alert("Почиње играч Чварков"); }, 0); 
+        setTimeout(function(){ alert("Почиње играч Чварков."); }, 0); 
         wait = false;
         buttonsON(true);
 
     }
 
-    min = parseInt(timer);
+    if(turn == "Cvarkov"){
+        if (timer1 < 1) {
+            document.getElementById('time-left').innerHTML = "Време је истекло!";
+            document.getElementById("time").innerHTML = 0;
+            //ako oba igraca imaju isto
+            //ako istekne jedno igracu vreme
+            pobeda = "Boskic";
+            buttonsON(false);
 
-    if (timer < 1 && end == false) {
-        document.getElementById('time-left').innerHTML = "Време је истекло!";
-        document.getElementById("time").innerHTML = min.toString();
-        return;
+            for(var i = 0; i < 4; i++)
+            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
+            return;
+        }
+
+        if(document.getElementById("time") != null)
+        document.getElementById("time").innerHTML = timer1.toString();
+        timer1--;
+
     }
-if(document.getElementById("time") != null)
-    document.getElementById("time").innerHTML = min.toString();
-    timer--;
+    else if(turn == "Boskic"){
+        if (timer2 < 1) {
+            document.getElementById('time-left').innerHTML = "Време је истекло!";
+            document.getElementById("time").innerHTML = 0;
+            //ako oba igraca imaju isto
+            //ako istekne jedno igracu vreme
+            pobeda = "Boskic";
+            buttonsON(false);
 
-    if(parseInt(timer) == 0){
+            for(var i = 0; i < 4; i++)
+            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";
+            return;
+        }
 
-        buttonsON(false);
-        row--;
-        document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button onclick=\"resetTimer()\" id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
-        document.getElementById("Ddugme").addEventListener('click',nextPlayer);
+        if(document.getElementById("time") != null)
+        document.getElementById("time").innerHTML = timer2.toString();
+        timer2--;
 
-        for(var i = 0; i < 4; i++)
-        if(turn == "Boskic"){
-        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";boskici = 0;}
-        else{
-        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";cvarcici = 0;}
-
-        timer = 60;
     }
 
     setTimeout(function () {
         startTimer();
     }, 1000);
-
-
 
 }
 
@@ -523,7 +656,7 @@ function newGame(){
     
     window.location.href = "../html/skocko-podesavanja.html";
 }
-var end = false;
+
 function endGame(){
 
     timer = 0;
@@ -531,8 +664,15 @@ function endGame(){
     clearTimeout(function () {
         startTimer();
     }, 1000);
+
     if(cvarcici >= boskici) pobeda = "Cvarkov"
     else pobeda = "Boskic";
+
+    buttonsON(false);
+
+    //document.getElementById("Sledeci").innerHTML = "Освијили сте: " + poeni + " поена! <br> <button onclick=\"resetTimer()\" id=\"Ddugme\" class=\"btn btn-primary\" style=\"width: 150px; border: black; border: 2px solid black; font-size: medium; font-family:cursive; color: white;\">Следећи играч</button>"
+    //document.getElementById("Ddugme").addEventListener('click',nextPlayer);
+
 
     document.getElementById('Voditeljka').pause();
 
