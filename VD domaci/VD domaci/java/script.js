@@ -5,6 +5,7 @@ pobeda = "Torbica"
 cvarcici = 7;
 boskici = 7;
 poeni = 0;
+end = false;
 
 var model1 = {
     
@@ -477,12 +478,6 @@ function nextPlayer(){
     
             }
 
-
-            if( document.getElementById('dd' + red).disabled != false){
-            document.getElementById('dd' + red).disabled = true;
-            document.getElementById('dd' + red).removeEventListener('click',check);
-            }
-
         }
 
         turn = "Boskic";
@@ -520,6 +515,11 @@ function nextPlayer(){
     
                     document.getElementById('1' + red + i).style.backgroundColor = "yellow";
     
+            }
+
+            if( document.getElementById('dd' + red).disabled == false){
+                document.getElementById('dd' + red).disabled = true;
+                document.getElementById('dd' + red).removeEventListener('click',check);
             }
 
         }
@@ -605,11 +605,20 @@ var end = false;
 
 function startTimer() {
 
+    if(end == true) return;
+
     if(wait == true){
 
         setTimeout(function(){ alert("Почиње играч Чварков."); }, 0); 
         wait = false;
         buttonsON(true);
+
+    }
+
+    if(timer1 > 0 && timer2 > 0 && row == 7){
+
+        buttonsON(false);
+        endGame("Nereseno");
 
     }
 
@@ -624,6 +633,7 @@ function startTimer() {
 
             for(var i = 0; i < 4; i++)
             document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
+            endGame(pobeda);
             return;
         }
 
@@ -643,6 +653,7 @@ function startTimer() {
 
             for(var i = 0; i < 4; i++)
             document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";
+            endGame(pobeda);
             return;
         }
 
@@ -652,17 +663,11 @@ function startTimer() {
 
     }
 
+
+
     setTimeout(function () {
         startTimer();
     }, 1000);
-
-}
-
-function resetTimer(){
-
-    document.getElementById('time-left').innerHTML = "Преостало време за погађање:";
-    document.getElementById("time").innerHTML = min.toString();
-    timer = 60;
 
 }
 
@@ -675,6 +680,8 @@ function newGame(){
     
     window.location.href = "../html/skocko-podesavanja.html";
 }
+
+///////////////////////////////////////////////////////////
 
 function endGame(vare){
 
@@ -690,8 +697,14 @@ function endGame(vare){
 
     document.getElementById('Voditeljka').pause();
 
-    if(pobeda == "Boskic"){
+    if( pobeda == "Nereseno"){
 
+        document.getElementById("time-left").innerHTML = "Нерешено!";
+        end = true;
+    }
+
+    if(pobeda == "Boskic"){
+        end = true;
         var x = document.createElement("VIDEO");
 
         x.setAttribute("src","../video/Boskic pobeda.mp4");
@@ -705,7 +718,7 @@ function endGame(vare){
 
     }
     else if(pobeda == "Cvarkov"){
-
+        end = true;
         var x = document.createElement("VIDEO");
 
         x.setAttribute("src","../video/Cvarkov pobeda.mp4");
@@ -722,7 +735,6 @@ function endGame(vare){
     buttonsON(false);
 
 }
-
 
 ///////////////////////////////////////////////////////////
 window.onload = start;
