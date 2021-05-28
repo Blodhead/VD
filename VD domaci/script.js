@@ -71,7 +71,7 @@ function setP1() {
     p2Flag = 1;
 
     if((p1Flag == true) && (p2Flag == true))
-    window.location.href = "../html/skocko-podesavanja.html";
+    window.location.href = "skocko-podesavanja.html";
 
 }
 
@@ -79,7 +79,7 @@ function setP2() {
     p1Flag = 1;
 
     if((p1Flag == true) && (p2Flag == true))
-    window.location.href = "../html/skocko-podesavanja.html";
+    window.location.href = "skocko-podesavanja.html";
 
 }
 
@@ -118,7 +118,7 @@ function addElement(){
 
                 if(cvarkov[i] == 0){
                     cvarkov[i] = this.id;
-                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"./skocko-dodatno/Images/" + icon + ".png\" alt=\"\">"
                     document.getElementById(i+1).addEventListener('click',removeElement);
                     break;
                 }
@@ -132,7 +132,7 @@ function addElement(){
 
                 if(boskic[i] == 0){
                     boskic[i] = this.id;
-                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+                    document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" id=" + (i+1) + " onclick=\"\" src=\"./skocko-dodatno/Images/" + icon + ".png\" alt=\"\">"
                     document.getElementById(i+1).addEventListener('click',removeElement);
                     break;
                 }
@@ -196,7 +196,7 @@ function endPodesavanjaTurn(){
     
         document.getElementById('Potvrdi').removeEventListener('click',endPodesavanjaTurn);
 
-        window.location.href = "../html/skocko-igra.html";
+        window.location.href = "skocko-igra.html";
 
     }
 
@@ -252,7 +252,7 @@ function addSign(){
         if(model1.matrix[row].pokusaj[i] == 0){
             icon = icon.slice(0,-1);
             model1.matrix[row].pokusaj[i] = icon;
-            document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+            document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"./skocko-dodatno/Images/" + icon + ".png\" alt=\"\">"
             document.getElementById("2" + row + (i+1)).addEventListener('click',removeSign);
             break;
         }
@@ -265,7 +265,7 @@ function addSign(){
         if(model2.matrix[row].pokusaj[i] == 0){
             icon = icon.slice(0,-1);
             model2.matrix[row].pokusaj[i] = icon;
-            document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"../Images/" + icon + ".png\" alt=\"\">"
+            document.getElementById(""+ row + i).innerHTML = "<img class=\"icons\" id="+ "2" + row + (i+1) +" onclick=\"\" src=\"./skocko-dodatno/Images/" + icon + ".png\" alt=\"\">"
             document.getElementById("2" + row + (i+1)).addEventListener('click',removeSign);
             break;
         }
@@ -424,9 +424,9 @@ function endTurn(){
 
         for(var i = 0; i < 4; i++)
         if(turn == "Boskic")
-        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + cvarkov[i] + ".png\" alt=\"\">";
         else
-        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";
+        document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + boskic[i] + ".png\" alt=\"\">";
 
         if(turn == "Boskic") endGame("Boskic");
         else endGame("Cvarkov");
@@ -457,7 +457,7 @@ function nextPlayer(){
                 document.getElementById('1' + red + i).style.backgroundColor = "rgb(139, 136, 136)";
 
                 if(model2.matrix[red].pokusaj[i] != "")
-                document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"../Images/" + model2.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
+                document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + model2.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
                 
                 if(model2.matrix[red].pogodak[i] == 1)
                 correct++;
@@ -496,7 +496,7 @@ function nextPlayer(){
                 document.getElementById('1' + red + i).style.backgroundColor = "rgb(139, 136, 136)";
 
                 if(model1.matrix[red].pokusaj[i] != "")
-                document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"../Images/" + model1.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
+                document.getElementById(""+ red + i).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + model1.matrix[red].pokusaj[i] + ".png\" alt=\"\">";
 
                 if(model1.matrix[red].pogodak[i] == 1)
                 correct++;
@@ -632,7 +632,7 @@ function startTimer() {
             buttonsON(false);
 
             for(var i = 0; i < 4; i++)
-            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + cvarkov[i] + ".png\" alt=\"\">";
+            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + cvarkov[i] + ".png\" alt=\"\">";
             endGame(pobeda);
             return;
         }
@@ -652,7 +652,7 @@ function startTimer() {
             buttonsON(false);
 
             for(var i = 0; i < 4; i++)
-            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"../Images/" + boskic[i] + ".png\" alt=\"\">";
+            document.getElementById('n' + (i+1)).innerHTML = "<img class=\"icons\" src=\"./skocko-dodatno/Images/" + boskic[i] + ".png\" alt=\"\">";
             endGame(pobeda);
             return;
         }
@@ -678,7 +678,7 @@ function newGame(){
     localStorage.setItem('Igrac1',0);
     localStorage.setItem('Igrac1',0);
     
-    window.location.href = "../html/skocko-podesavanja.html";
+    window.location.href = "skocko-podesavanja.html";
 }
 
 ///////////////////////////////////////////////////////////
@@ -707,7 +707,7 @@ function endGame(vare){
         end = true;
         var x = document.createElement("VIDEO");
 
-        x.setAttribute("src","../video/Boskic pobeda.mp4");
+        x.setAttribute("src","./skocko-dodatno/video/Boskic pobeda.mp4");
 
         x.setAttribute("width", "270");
         x.setAttribute("height", "190");
@@ -721,7 +721,7 @@ function endGame(vare){
         end = true;
         var x = document.createElement("VIDEO");
 
-        x.setAttribute("src","../video/Cvarkov pobeda.mp4");
+        x.setAttribute("src","./skocko-dodatno/video/Cvarkov pobeda.mp4");
 
         x.setAttribute("width", "270");
         x.setAttribute("height", "190");
